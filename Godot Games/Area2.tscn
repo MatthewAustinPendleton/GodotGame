@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://be7w03ibff2r8"]
+
+[ext_resource type="PackedScene" uid="uid://s3w6rvp5ikgm" path="res://tile_map.tscn" id="1_lhe1k"]
+[ext_resource type="PackedScene" uid="uid://biy4twhafnlqk" path="res://player.tscn" id="2_mi8xg"]
+[ext_resource type="PackedScene" uid="uid://xmmc4hxyhtu4" path="res://invis_barrier.tscn" id="3_rnxk1"]
+[ext_resource type="PackedScene" uid="uid://bugkf5rjlowqp" path="res://sky_node.tscn" id="4_7vl2p"]
+
+[node name="Scene1" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_lhe1k")]
+position = Vector2(0, 72)
+
+[node name="Player" parent="." instance=ExtResource("2_mi8xg")]
+position = Vector2(48, 488)
+
+[node name="InvisBarrier" parent="." instance=ExtResource("3_rnxk1")]
+position = Vector2(-176, -8)
+
+[node name="InvisBarrier2" parent="." instance=ExtResource("3_rnxk1")]
+position = Vector2(1328, -24)
+
+[node name="SkyNode" parent="." instance=ExtResource("4_7vl2p")]
