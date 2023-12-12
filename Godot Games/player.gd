@@ -12,6 +12,29 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction = Vector2.RIGHT
 
+func clear_bools():
+	Global.hasEnteredArea1 = false
+	Global.hasEnteredArea2 = false
+
+func update_player_direction(playerEnteredFromLeft : bool):
+	if playerEnteredFromLeft:
+		direction = Vector2.RIGHT
+		sprite.flip_h = false
+	else:
+		direction = Vector2.LEFT
+		sprite.flip_h = true
+
+func _process(delta):
+	if(Global.hasEnteredArea1):
+		set_position(Global.area2SpawnPoint)
+		update_player_direction(Global.isPlayerFacingRight)
+	if(Global.hasEnteredArea2):
+		set_position(Global.area1SpawnPoint)
+		update_player_direction(Global.isPlayerFacingRight)
+	
+	clear_bools()
+	
+
 func _physics_process(delta):
 	#sprite.texture = load("res://Walk-Man.png")
 	if Input.is_action_pressed("ui_left"):

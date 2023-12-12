@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://e0s50grs2o0q"]
+[gd_scene load_steps=7 format=3 uid="uid://e0s50grs2o0q"]
 
 [ext_resource type="PackedScene" uid="uid://s3w6rvp5ikgm" path="res://tile_map.tscn" id="1_p0god"]
 [ext_resource type="PackedScene" uid="uid://xmmc4hxyhtu4" path="res://invis_barrier.tscn" id="2_euupo"]
 [ext_resource type="PackedScene" uid="uid://biy4twhafnlqk" path="res://player.tscn" id="3_7vy1e"]
 [ext_resource type="PackedScene" uid="uid://bugkf5rjlowqp" path="res://sky_node.tscn" id="4_e1tt2"]
+[ext_resource type="Script" path="res://SceneChange.gd" id="5_dhp0v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fftlx"]
+size = Vector2(20, 234)
 
 [node name="TestScene" type="Node2D"]
 metadata/_edit_vertical_guides_ = [1280.0, 1296.0]
@@ -18,6 +22,15 @@ position = Vector2(0, 72)
 position = Vector2(1352, -40)
 
 [node name="Player" parent="." instance=ExtResource("3_7vy1e")]
-position = Vector2(136, 112)
+position = Vector2(104, 104)
 
 [node name="SkyNode" parent="." instance=ExtResource("4_e1tt2")]
+
+[node name="Area2" type="Area2D" parent="."]
+script = ExtResource("5_dhp0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2"]
+position = Vector2(1288, 485)
+shape = SubResource("RectangleShape2D_fftlx")
+
+[connection signal="body_entered" from="Area2" to="Area2" method="_on_body_entered"]
