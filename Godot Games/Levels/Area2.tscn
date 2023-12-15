@@ -1,0 +1,81 @@
+[gd_scene load_steps=13 format=3 uid="uid://bs4jwrwks088b"]
+
+[ext_resource type="PackedScene" uid="uid://s3w6rvp5ikgm" path="res://Prefabs/tile_map.tscn" id="1_lhe1k"]
+[ext_resource type="PackedScene" uid="uid://biy4twhafnlqk" path="res://Prefabs/player.tscn" id="2_mi8xg"]
+[ext_resource type="PackedScene" uid="uid://xmmc4hxyhtu4" path="res://Prefabs/invis_barrier.tscn" id="3_rnxk1"]
+[ext_resource type="PackedScene" uid="uid://bugkf5rjlowqp" path="res://Prefabs/sky_node.tscn" id="4_7vl2p"]
+[ext_resource type="Script" path="res://Scripts/SceneChange.gd" id="5_rj8ao"]
+[ext_resource type="Script" path="res://Scripts/collectible_item.gd" id="6_2f1bx"]
+[ext_resource type="Resource" uid="uid://bpbgcpmr8i712" path="res://Inventory/Items/apple.tres" id="7_txeed"]
+[ext_resource type="Texture2D" uid="uid://bed7qa8b8vq3f" path="res://Assets/Textures/apple.png" id="8_ld0xf"]
+[ext_resource type="Texture2D" uid="uid://diosedsikxjyo" path="res://Assets/Textures/stick.png" id="9_01veu"]
+[ext_resource type="Resource" uid="uid://b3kdlol6kvuu0" path="res://Inventory/Items/stick.tres" id="9_xkhgo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpc56"]
+size = Vector2(20, 234)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2ejk"]
+size = Vector2(56, 58)
+
+[node name="Scene1" type="Node2D"]
+metadata/_edit_vertical_guides_ = [56.0]
+
+[node name="TileMap" parent="." instance=ExtResource("1_lhe1k")]
+position = Vector2(0, 72)
+
+[node name="Player" parent="." instance=ExtResource("2_mi8xg")]
+position = Vector2(-571, 295)
+
+[node name="InvisBarrier" parent="." instance=ExtResource("3_rnxk1")]
+position = Vector2(0, 8)
+
+[node name="InvisBarrier2" parent="." instance=ExtResource("3_rnxk1")]
+position = Vector2(1328, -24)
+
+[node name="SkyNode" parent="." instance=ExtResource("4_7vl2p")]
+
+[node name="Area1" type="Area2D" parent="."]
+position = Vector2(-1280, 0)
+script = ExtResource("5_rj8ao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area1"]
+position = Vector2(1288, 485)
+shape = SubResource("RectangleShape2D_jpc56")
+
+[node name="Apple" type="Node2D" parent="."]
+script = ExtResource("6_2f1bx")
+item = ExtResource("7_txeed")
+
+[node name="Sprite2D" type="Sprite2D" parent="Apple"]
+position = Vector2(516, 610)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_ld0xf")
+
+[node name="Area2D" type="Area2D" parent="Apple"]
+position = Vector2(1, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Apple/Area2D"]
+position = Vector2(529, 610)
+shape = SubResource("RectangleShape2D_a2ejk")
+
+[node name="Stick" type="Node2D" parent="."]
+script = ExtResource("6_2f1bx")
+item = ExtResource("9_xkhgo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Stick"]
+position = Vector2(694, 619)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_01veu")
+
+[node name="Area2D" type="Area2D" parent="Stick"]
+position = Vector2(1, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stick/Area2D"]
+position = Vector2(712, 610)
+shape = SubResource("RectangleShape2D_a2ejk")
+
+[connection signal="body_entered" from="Area1" to="Area1" method="_on_body_entered"]
+[connection signal="body_entered" from="Apple/Area2D" to="Apple" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Apple/Area2D" to="Apple" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Stick/Area2D" to="Stick" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Stick/Area2D" to="Stick" method="_on_area_2d_body_exited"]

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ffe8w48sj2op"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemSprite" type="Sprite2D" parent="Control"]
+
+[node name="ItemCountLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

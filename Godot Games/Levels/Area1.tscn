@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://e0s50grs2o0q"]
+
+[ext_resource type="PackedScene" uid="uid://s3w6rvp5ikgm" path="res://Prefabs/tile_map.tscn" id="1_hsb1q"]
+[ext_resource type="PackedScene" uid="uid://xmmc4hxyhtu4" path="res://Prefabs/invis_barrier.tscn" id="2_vjbgv"]
+[ext_resource type="PackedScene" uid="uid://biy4twhafnlqk" path="res://Prefabs/player.tscn" id="3_ow6wu"]
+[ext_resource type="PackedScene" uid="uid://bugkf5rjlowqp" path="res://Prefabs/sky_node.tscn" id="4_bdco4"]
+[ext_resource type="Script" path="res://Scripts/SceneChange.gd" id="5_yvrrx"]
+[ext_resource type="Texture2D" uid="uid://cwvi3ov7t0lgq" path="res://Assets/Textures/copper axe.png" id="6_dfj2j"]
+[ext_resource type="Script" path="res://Scripts/collectible_item.gd" id="7_7cqsa"]
+[ext_resource type="Resource" uid="uid://ggldliogupyj" path="res://Inventory/Items/copper_axe.tres" id="8_x7p30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fftlx"]
+size = Vector2(20, 234)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tidsr"]
+size = Vector2(62, 58)
+
+[node name="TestScene" type="Node2D"]
+metadata/_edit_vertical_guides_ = [1280.0, 1296.0]
+metadata/_edit_horizontal_guides_ = [688.0]
+
+[node name="TileMap" parent="." instance=ExtResource("1_hsb1q")]
+position = Vector2(0, 72)
+
+[node name="InvisBarrier" parent="." instance=ExtResource("2_vjbgv")]
+
+[node name="InvisBarrier2" parent="." instance=ExtResource("2_vjbgv")]
+position = Vector2(1352, -40)
+
+[node name="Player" parent="." instance=ExtResource("3_ow6wu")]
+position = Vector2(215, 572)
+
+[node name="SkyNode" parent="." instance=ExtResource("4_bdco4")]
+
+[node name="Area2" type="Area2D" parent="."]
+script = ExtResource("5_yvrrx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2"]
+position = Vector2(1288, 485)
+shape = SubResource("RectangleShape2D_fftlx")
+
+[node name="Copper Axe" type="Node2D" parent="."]
+script = ExtResource("7_7cqsa")
+item = ExtResource("8_x7p30")
+
+[node name="Sprite2D" type="Sprite2D" parent="Copper Axe"]
+position = Vector2(484, 590)
+rotation = 1.01906
+texture = ExtResource("6_dfj2j")
+
+[node name="Area2D" type="Area2D" parent="Copper Axe"]
+position = Vector2(1, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Copper Axe/Area2D"]
+position = Vector2(515, 611)
+shape = SubResource("RectangleShape2D_tidsr")
+
+[connection signal="body_entered" from="Area2" to="Area2" method="_on_body_entered"]
+[connection signal="body_entered" from="Copper Axe/Area2D" to="Copper Axe" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Copper Axe/Area2D" to="Copper Axe" method="_on_area_2d_body_exited"]

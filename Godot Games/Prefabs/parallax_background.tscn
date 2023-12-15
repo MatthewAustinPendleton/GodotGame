@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://tuelrlw2k8pi"]
+
+[ext_resource type="Script" path="res://Scripts/Parallax Background.gd" id="1_jk5wl"]
+[ext_resource type="Texture2D" uid="uid://ssxx13dgfxox" path="res://Assets/Textures/sky-background.png" id="2_1w2li"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+scale = Vector2(1.45854, 1.02823)
+transform = Transform2D(1.45854, 0, 0, 1.02823, 0, 0)
+script = ExtResource("1_jk5wl")
+metadata/_edit_vertical_guides_ = [2093.0, 1934.0]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+position = Vector2(812.456, 1436.45)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+position = Vector2(-10702.5, -1703.9)
+scale = Vector2(1.15268, 0.859675)
+texture = ExtResource("2_1w2li")
+centered = false
