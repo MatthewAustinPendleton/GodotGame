@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://ggldliogupyj"]
+
+[ext_resource type="Script" path="res://Inventory/Inventory_Item.gd" id="1_1kswp"]
+[ext_resource type="Texture2D" uid="uid://cwvi3ov7t0lgq" path="res://Assets/Textures/copper axe.png" id="2_2xsit"]
+
+[resource]
+script = ExtResource("1_1kswp")
+name = "copper_axe"
+texture = ExtResource("2_2xsit")
+description = "A woodcutting axe made from copper, only able to fell the weakest of trees."

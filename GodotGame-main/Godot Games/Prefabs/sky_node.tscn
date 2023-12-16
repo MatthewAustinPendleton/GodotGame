@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bugkf5rjlowqp"]
+
+[ext_resource type="Texture2D" uid="uid://ssxx13dgfxox" path="res://Assets/Textures/sky-background.png" id="1_6nlin"]
+[ext_resource type="Script" path="res://Scripts/Sky.gd" id="2_6swtp"]
+
+[node name="SkyNode" type="Node"]
+
+[node name="Sky" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(1.2, 1)
+texture = ExtResource("1_6nlin")
+centered = false
+script = ExtResource("2_6swtp")
+
+[node name="Sky2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1560, 0)
+scale = Vector2(1.2, 1)
+texture = ExtResource("1_6nlin")
+centered = false
+script = ExtResource("2_6swtp")

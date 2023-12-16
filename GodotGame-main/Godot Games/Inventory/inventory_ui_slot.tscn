@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://d063ppj42b6cy"]
+
+[ext_resource type="Texture2D" uid="uid://bkfbxcemvv3us" path="res://Assets/Textures/inventorywindow.png" id="1_khfnr"]
+[ext_resource type="Script" path="res://Inventory/inventory_ui_slot.gd" id="1_v77tf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rxg1"]
+size = Vector2(39.7047, 5.83213)
+
+[node name="Inventory_UI_Slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(10, 9)
+offset_right = 10.0
+offset_bottom = 9.0
+script = ExtResource("1_v77tf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0125, 0.015)
+texture = ExtResource("1_khfnr")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.246059, 0.223175)
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Item_Display" type="Sprite2D" parent="CenterContainer/Panel"]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-35, 15)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel"]
+custom_minimum_size = Vector2(19, 23)
+layout_mode = 0
+offset_left = 0.320352
+offset_top = 2.40396
+offset_right = 19.3204
+offset_bottom = 25.404
+horizontal_alignment = 2
+
+[node name="Click_Area" type="Area2D" parent="CenterContainer/Panel"]
+scale = Vector2(1, 6.91464)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterContainer/Panel/Click_Area"]
+position = Vector2(0.32033, 0.0236526)
+shape = SubResource("RectangleShape2D_3rxg1")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bpbgcpmr8i712"]
+
+[ext_resource type="Script" path="res://Inventory/Inventory_Item.gd" id="1_08mrt"]
+[ext_resource type="Texture2D" uid="uid://bed7qa8b8vq3f" path="res://Assets/Textures/apple.png" id="2_3ov60"]
+
+[resource]
+script = ExtResource("1_08mrt")
+name = "apple"
+texture = ExtResource("2_3ov60")
+description = "A delicious red red delicious. "
